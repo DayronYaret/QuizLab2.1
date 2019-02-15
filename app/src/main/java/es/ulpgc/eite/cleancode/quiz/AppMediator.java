@@ -5,6 +5,15 @@ import android.app.Application;
 public class AppMediator extends Application {
 
   private QuestionState questionState;
+  private QuestionToCheatState questionToCheatState;
+
+  public QuestionToCheatState getQuestionToCheatState() {
+    return questionToCheatState;
+  }
+
+  public void setQuestionToCheatState(QuestionToCheatState state) {
+    this.questionToCheatState = state;
+  }
 
   public QuestionState getQuestionState(){
     return questionState;

@@ -1,5 +1,6 @@
 package es.ulpgc.eite.cleancode.quiz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -140,7 +141,13 @@ public class QuestionActivity extends AppCompatActivity {
 
     Log.e(TAG, "onCheatButtonClicked()");
 
-    // not implemented
+
+    QuestionToCheatState state = new QuestionToCheatState();
+    state.setAnswer(repository.getCurrentAnswer());
+    mediator.setQuestionToCheatState(state);
+
+    Intent intent = new Intent(this, CheatActivity.class);
+    startActivity(intent);
   }
 
   public void onNextButtonClicked(View view) {
