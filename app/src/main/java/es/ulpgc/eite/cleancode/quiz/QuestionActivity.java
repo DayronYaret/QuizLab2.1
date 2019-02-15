@@ -22,7 +22,7 @@ public class QuestionActivity extends AppCompatActivity {
   private Button trueButton, falseButton, cheatButton, nextButton;
 
   private boolean buttonClicked = false;
-  private boolean button = false;
+  private boolean buttonSelected = false;
   private AppMediator mediator;
 
   @Override
@@ -59,12 +59,13 @@ public class QuestionActivity extends AppCompatActivity {
 
       // 2) fijar estado recuperado
       buttonClicked = state.isButtonClicked();
-      button = state.getSelectedButton();
+      buttonSelected = state.getSelectedButton();
 
       // 3) actualizar IU
       repository.setCurrentIndex(state.getIndex());
       //checkCurrentAnswer(state.isAnswer());
       //questionText.setText(state.getQuestion());
+      repository.checkCurrentAnswer(buttonSelected);
       //updateUI();
     }
 
@@ -78,16 +79,16 @@ public class QuestionActivity extends AppCompatActivity {
 
     // guardar estado
 
-    // estado: class Question, boolean buttonClicked, boolean button
+    // estado: class Question, boolean buttonClicked, boolean buttonSelected
     // estado:
     //    String question,
     //    boolean answer,
     //    boolean buttonClicked,
-    //    boolean button
+    //    boolean buttonSelected
 
     QuestionState state = new QuestionState();
     state.setButtonClicked(buttonClicked);
-    state.setButton(button);
+    state.setButton(buttonSelected);
     state.setIndex(repository.getCurrentIndex());
     //state.setAnswer(repository.getCurrentAnswer());
     //state.setQuestion(repository.getCurrentQuestion());
@@ -115,14 +116,14 @@ public class QuestionActivity extends AppCompatActivity {
     Log.e(TAG, "onTrueButtonClicked()");
 
     checkCurrentAnswer(true);
-    button = true;
+    buttonSelected = true;
   }
 
   public void onFalseButtonClicked(View view) {
     Log.e(TAG, "onFalseButtonClicked()");
 
     checkCurrentAnswer(false);
-    button = false;
+    buttonSelected = false;
   }
 
   private void checkCurrentAnswer(boolean answer){

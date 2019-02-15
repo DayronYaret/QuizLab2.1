@@ -67,6 +67,7 @@ public class QuestionRepositoryMock implements QuestionRepository {
   @Override
   public void setCurrentIndex(Integer index) {
     questionIndex = index;
+
   }
 
   @Override
