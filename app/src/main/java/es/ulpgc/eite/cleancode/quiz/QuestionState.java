@@ -2,11 +2,21 @@ package es.ulpgc.eite.cleancode.quiz;
 
 public class QuestionState {
 
-  private String question;
-  private boolean answer;
+  //private String question;
+  //private boolean answer;
   private boolean buttonClicked;
   private boolean button;
+  private int index;
 
+  public int getIndex() {
+    return index;
+  }
+
+  public void setIndex(int index) {
+    this.index = index;
+  }
+
+  /*
   public String getQuestion() {
     return question;
   }
@@ -22,6 +32,7 @@ public class QuestionState {
   public void setAnswer(boolean answer) {
     this.answer = answer;
   }
+  */
 
   public boolean isButtonClicked() {
     return buttonClicked;

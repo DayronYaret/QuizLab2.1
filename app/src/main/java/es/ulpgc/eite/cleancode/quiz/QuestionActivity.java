@@ -44,7 +44,7 @@ public class QuestionActivity extends AppCompatActivity {
     //repository = new QuestionRepositoryImpl();
 
     initUI();
-    updateUI();
+    //updateUI();
   }
 
   @Override
@@ -62,9 +62,13 @@ public class QuestionActivity extends AppCompatActivity {
       button = state.getSelectedButton();
 
       // 3) actualizar IU
-      checkCurrentAnswer(state.isAnswer());
-      questionText.setText(state.getQuestion());
+      repository.setCurrentIndex(state.getIndex());
+      //checkCurrentAnswer(state.isAnswer());
+      //questionText.setText(state.getQuestion());
+      //updateUI();
     }
+
+    updateUI();
   }
 
 
@@ -84,8 +88,9 @@ public class QuestionActivity extends AppCompatActivity {
     QuestionState state = new QuestionState();
     state.setButtonClicked(buttonClicked);
     state.setButton(button);
-    state.setAnswer(repository.getCurrentAnswer());
-    state.setQuestion(repository.getCurrentQuestion());
+    state.setIndex(repository.getCurrentIndex());
+    //state.setAnswer(repository.getCurrentAnswer());
+    //state.setQuestion(repository.getCurrentQuestion());
     mediator.setQuestionState(state);
 
   }
