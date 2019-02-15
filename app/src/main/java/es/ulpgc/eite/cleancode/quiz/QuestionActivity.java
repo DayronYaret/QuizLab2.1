@@ -17,7 +17,7 @@ public class QuestionActivity extends AppCompatActivity {
   private static final String NEXT_BUTTON_LABEL = "Next";
 
   private QuestionRepository repository;
-  private TextView questionText, answerText;
+  private TextView questionText, resultText;
   private Button trueButton, falseButton, cheatButton, nextButton;
 
   private boolean buttonClicked = false;
@@ -33,7 +33,7 @@ public class QuestionActivity extends AppCompatActivity {
     nextButton = findViewById(R.id.nextButton);
 
     questionText = findViewById(R.id.questionText);
-    answerText = findViewById(R.id.answerText);
+    resultText = findViewById(R.id.resultText);
 
     repository = new QuestionRepositoryMock();
 
@@ -54,7 +54,7 @@ public class QuestionActivity extends AppCompatActivity {
     Log.e(TAG, "updateUI()");
 
     questionText.setText(repository.getCurrentQuestion());
-    answerText.setText(repository.getCurrentAnswer());
+    resultText.setText(repository.getCurrentResult());
   }
 
   public void onTrueButtonClicked(View view) {

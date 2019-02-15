@@ -11,12 +11,12 @@ public class QuestionRepositoryMock implements QuestionRepository {
   private static final boolean TRUE_ANSWER = true;
   private static final boolean FALSE_ANSWER = false;
 
-  private static final String EMPTY_ANSWER = "";
-  private static final String CORRECT_ANSWER = "Correct!";
-  private static final String INCORRECT_ANSWER = "Incorrect!";
+  private static final String EMPTY_RESULT = "";
+  private static final String CORRECT_RESULT = "Correct!";
+  private static final String INCORRECT_RESULT = "Incorrect!";
 
   private int questionIndex = 0;
-  private String questionAnswer = EMPTY_ANSWER;
+  private String questionResult = EMPTY_RESULT;
 
 
   private List<Question> questionStore = Arrays.asList(
@@ -24,6 +24,15 @@ public class QuestionRepositoryMock implements QuestionRepository {
       new Question(QUESTION2_FALSE, FALSE_ANSWER),
       new Question(QUESTION3_TRUE, TRUE_ANSWER)
   );
+
+  @Override
+  public Boolean getCurrentAnswer() {
+    if(questionIndex == questionStore.size()) {
+      return null;
+    }
+
+    return questionStore.get(questionIndex).getAnswer();
+  }
 
   @Override
   public String getCurrentQuestion() {
@@ -37,24 +46,35 @@ public class QuestionRepositoryMock implements QuestionRepository {
   @Override
   public void setupNextQuestion() {
     questionIndex++;
-    questionAnswer = EMPTY_ANSWER;
+    questionResult = EMPTY_RESULT;
   }
 
   @Override
-  public String getCurrentAnswer() {
+  public String getCurrentResult() {
     if(questionIndex == questionStore.size()) {
       return null;
     }
 
-    return questionAnswer;
+    return questionResult;
+  }
+
+
+  @Override
+  public Integer getCurrentIndex() {
+    return questionIndex;
+  }
+
+  @Override
+  public void setCurrentIndex(Integer index) {
+    questionIndex = index;
   }
 
   @Override
   public void checkCurrentAnswer(boolean userAnswer) {
     if(userAnswer == questionStore.get(questionIndex).getAnswer()) {
-      questionAnswer = CORRECT_ANSWER;
+      questionResult = CORRECT_RESULT;
     } else {
-      questionAnswer = INCORRECT_ANSWER;
+      questionResult = INCORRECT_RESULT;
     }
   }
 

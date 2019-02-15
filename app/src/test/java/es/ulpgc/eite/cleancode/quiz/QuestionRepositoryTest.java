@@ -9,9 +9,9 @@ public class QuestionRepositoryTest {
   private static final String QUESTION1_TRUE = "Question #1: True";
   private static final String QUESTION2_FALSE = "Question #2: False";
   private static final String QUESTION3_TRUE = "Question #3: True";
-  private static final String EMPTY_ANSWER = "";
-  private static final String CORRECT_ANSWER = "Correct!";
-  private static final String INCORRECT_ANSWER = "Incorrect!";
+  private static final String EMPTY_RESULT = "";
+  private static final String CORRECT_RESULT = "Correct!";
+  private static final String INCORRECT_RESULT = "Incorrect!";
   
   @Test
   public void testNoClickAnyButton() {
@@ -21,11 +21,11 @@ public class QuestionRepositoryTest {
 
     // When
     String question = repository.getCurrentQuestion();
-    String answer = repository.getCurrentAnswer();
+    String answer = repository.getCurrentResult();
 
     // Then
     assertEquals("Get current question failed", question, QUESTION1_TRUE);
-    assertEquals("Get current answer failed", answer, EMPTY_ANSWER);
+    assertEquals("Get current result failed", answer, EMPTY_RESULT);
   }
 
   @Test
@@ -37,12 +37,12 @@ public class QuestionRepositoryTest {
     // When
     repository.checkCurrentAnswer(true);
     String question = repository.getCurrentQuestion();
-    String answer = repository.getCurrentAnswer();
+    String answer = repository.getCurrentResult();
     boolean lastQuestion = repository.existNextQuestion();
 
     // Then
     assertEquals("Get current question failed", question, QUESTION1_TRUE);
-    assertEquals("Get current answer failed", answer, CORRECT_ANSWER);
+    assertEquals("Get current result failed", answer, CORRECT_RESULT);
     assertEquals("Check last question failed", lastQuestion, true);
   }
 
@@ -56,12 +56,12 @@ public class QuestionRepositoryTest {
     // When
     repository.checkCurrentAnswer(false);
     String question = repository.getCurrentQuestion();
-    String answer = repository.getCurrentAnswer();
+    String answer = repository.getCurrentResult();
     boolean lastQuestion = repository.existNextQuestion();
 
     // Then
     assertEquals("Get current question failed", question, QUESTION1_TRUE);
-    assertEquals("Get current answer failed", answer, INCORRECT_ANSWER);
+    assertEquals("Get current result failed", answer, INCORRECT_RESULT);
     assertEquals("Check last question failed", lastQuestion, true);
   }
 
@@ -74,11 +74,11 @@ public class QuestionRepositoryTest {
     // When
     repository.setupNextQuestion();
     String question = repository.getCurrentQuestion();
-    String answer = repository.getCurrentAnswer();
+    String answer = repository.getCurrentResult();
 
     // Then
     assertEquals("Get current question failed", question, QUESTION2_FALSE);
-    assertEquals("Get current answer failed", answer, EMPTY_ANSWER);
+    assertEquals("Get current result failed", answer, EMPTY_RESULT);
 
   }
 
@@ -92,12 +92,12 @@ public class QuestionRepositoryTest {
     repository.setupNextQuestion();
     repository.checkCurrentAnswer(true);
     String question = repository.getCurrentQuestion();
-    String answer = repository.getCurrentAnswer();
+    String answer = repository.getCurrentResult();
     boolean lastQuestion = repository.existNextQuestion();
 
     // Then
     assertEquals("Get current question failed", question, QUESTION2_FALSE);
-    assertEquals("Get current answer failed", answer, INCORRECT_ANSWER);
+    assertEquals("Get current result failed", answer, INCORRECT_RESULT);
     assertEquals("Check last question failed", lastQuestion, true);
   }
 
@@ -112,12 +112,12 @@ public class QuestionRepositoryTest {
     repository.setupNextQuestion();
     repository.checkCurrentAnswer(false);
     String question = repository.getCurrentQuestion();
-    String answer = repository.getCurrentAnswer();
+    String answer = repository.getCurrentResult();
     boolean lastQuestion = repository.existNextQuestion();
 
     // Then
     assertEquals("Get current question failed", question, QUESTION2_FALSE);
-    assertEquals("Get current answer failed", answer, CORRECT_ANSWER);
+    assertEquals("Get current result failed", answer, CORRECT_RESULT);
     assertEquals("Check last question failed", lastQuestion, true);
   }
 
@@ -131,11 +131,11 @@ public class QuestionRepositoryTest {
     repository.setupNextQuestion();
     repository.setupNextQuestion();
     String question = repository.getCurrentQuestion();
-    String answer = repository.getCurrentAnswer();
+    String answer = repository.getCurrentResult();
 
     // Then
     assertEquals("Get current question failed", question, QUESTION3_TRUE);
-    assertEquals("Get current answer failed", answer, EMPTY_ANSWER);
+    assertEquals("Get current result failed", answer, EMPTY_RESULT);
   }
 
   @Test
@@ -149,12 +149,12 @@ public class QuestionRepositoryTest {
     repository.setupNextQuestion();
     repository.checkCurrentAnswer(true);
     String question = repository.getCurrentQuestion();
-    String answer = repository.getCurrentAnswer();
+    String answer = repository.getCurrentResult();
     boolean lastQuestion = repository.existNextQuestion();
 
     // Then
     assertEquals("Get current question failed", question, QUESTION3_TRUE);
-    assertEquals("Get current answer failed", answer, CORRECT_ANSWER);
+    assertEquals("Get current result failed", answer, CORRECT_RESULT);
     assertEquals("Check last question failed", lastQuestion, false);
   }
 
@@ -170,12 +170,12 @@ public class QuestionRepositoryTest {
     repository.setupNextQuestion();
     repository.checkCurrentAnswer(false);
     String question = repository.getCurrentQuestion();
-    String answer = repository.getCurrentAnswer();
+    String answer = repository.getCurrentResult();
     boolean lastQuestion = repository.existNextQuestion();
 
     // Then
     assertEquals("Get current question failed", question, QUESTION3_TRUE);
-    assertEquals("Get current answer failed", answer, INCORRECT_ANSWER);
+    assertEquals("Get current result failed", answer, INCORRECT_RESULT);
     assertEquals("Check last question failed", lastQuestion, false);
   }
 
@@ -190,10 +190,10 @@ public class QuestionRepositoryTest {
     repository.setupNextQuestion();
     repository.setupNextQuestion();
     String question = repository.getCurrentQuestion();
-    String answer = repository.getCurrentAnswer();
+    String answer = repository.getCurrentResult();
 
     // Then
     assertEquals("Get current question failed", question, null);
-    assertEquals("Get current answer failed", answer, null);
+    assertEquals("Get current result failed", answer, null);
   }
 }
