@@ -6,11 +6,8 @@ public interface QuestionRepository {
   String getCurrentQuestion();
   void setupNextQuestion();
   String getCurrentResult();
-
   Integer getCurrentIndex();
-
   void setCurrentIndex(Integer index);
-
   void checkCurrentAnswer(boolean userAnswer);
   boolean existNextQuestion();
 }
