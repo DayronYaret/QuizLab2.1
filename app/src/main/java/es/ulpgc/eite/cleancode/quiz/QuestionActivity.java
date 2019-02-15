@@ -18,13 +18,13 @@ public class QuestionActivity extends AppCompatActivity {
   private static final String NEXT_BUTTON_LABEL = "Next";
 
   private QuestionRepository repository;
+  private AppMediator mediator;
 
   private TextView questionText, resultText;
   private Button trueButton, falseButton, cheatButton, nextButton;
 
   private boolean buttonClicked = false;
   private boolean buttonSelected = false;
-  private AppMediator mediator;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

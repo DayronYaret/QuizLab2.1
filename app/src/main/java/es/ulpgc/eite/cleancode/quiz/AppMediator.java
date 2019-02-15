@@ -6,6 +6,7 @@ public class AppMediator extends Application {
 
   private QuestionState questionState;
   private QuestionToCheatState questionToCheatState;
+  private CheatState cheatState;
 
   public QuestionToCheatState getQuestionToCheatState() {
     return questionToCheatState;
@@ -21,5 +22,13 @@ public class AppMediator extends Application {
 
   public void setQuestionState(QuestionState state) {
     questionState = state;
+  }
+
+  public void setCheatState(CheatState state) {
+    cheatState = state;
+  }
+
+  public CheatState getCheatState() {
+    return cheatState;
   }
 }
