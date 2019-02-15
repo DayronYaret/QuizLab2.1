@@ -17,10 +17,13 @@ public class QuestionActivity extends AppCompatActivity {
   private static final String NEXT_BUTTON_LABEL = "Next";
 
   private QuestionRepository repository;
+
   private TextView questionText, resultText;
   private Button trueButton, falseButton, cheatButton, nextButton;
 
   private boolean buttonClicked = false;
+  private boolean button = false;
+  private AppMediator mediator;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +38,44 @@ public class QuestionActivity extends AppCompatActivity {
     questionText = findViewById(R.id.questionText);
     resultText = findViewById(R.id.resultText);
 
+    mediator = (AppMediator) getApplication();
+
     repository = new QuestionRepositoryMock();
+    //repository = new QuestionRepositoryImpl();
 
     initUI();
     updateUI();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+
+    // recuperar estado guardado
+
+
+  }
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+
+    // guardar estado
+
+    // estado: class Question, boolean buttonClicked, boolean button
+    // estado:
+    //    String question,
+    //    boolean answer,
+    //    boolean buttonClicked,
+    //    boolean button
+
+    QuestionState state = new QuestionState();
+    state.setButtonClicked(buttonClicked);
+    state.setButton(button);
+    state.setAnswer(repository.getCurrentAnswer());
+    state.setQuestion(repository.getCurrentQuestion());
+    mediator.setQuestionState(state);
+
   }
 
   private void initUI(){
@@ -61,12 +98,14 @@ public class QuestionActivity extends AppCompatActivity {
     Log.e(TAG, "onTrueButtonClicked()");
 
     checkCurrentAnswer(true);
+    button = true;
   }
 
   public void onFalseButtonClicked(View view) {
     Log.e(TAG, "onFalseButtonClicked()");
 
     checkCurrentAnswer(false);
+    button = false;
   }
 
   private void checkCurrentAnswer(boolean answer){
@@ -87,6 +126,8 @@ public class QuestionActivity extends AppCompatActivity {
   }
 
   public void onNextButtonClicked(View view) {
+    // no puedes pasar a la sig preguntar sin responder
+    // a la actual
     if(!buttonClicked){
       return;
     }
