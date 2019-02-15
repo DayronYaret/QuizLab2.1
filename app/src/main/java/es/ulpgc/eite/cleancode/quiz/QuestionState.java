@@ -31,7 +31,7 @@ public class QuestionState {
     this.buttonClicked = buttonClicked;
   }
 
-  public boolean isButton() {
+  public boolean getSelectedButton() {
     return button;
   }
 

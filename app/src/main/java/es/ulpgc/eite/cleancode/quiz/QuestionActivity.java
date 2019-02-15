@@ -53,7 +53,18 @@ public class QuestionActivity extends AppCompatActivity {
 
     // recuperar estado guardado
 
+    // 1) recuperar estado desde mediador
+    QuestionState state = mediator.getQuestionState();
+    if(state != null) {
 
+      // 2) fijar estado recuperado
+      buttonClicked = state.isButtonClicked();
+      button = state.getSelectedButton();
+
+      // 3) actualizar IU
+      checkCurrentAnswer(state.isAnswer());
+      questionText.setText(state.getQuestion());
+    }
   }
 
 
