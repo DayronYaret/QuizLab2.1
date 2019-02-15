@@ -56,6 +56,7 @@ public class QuestionActivity extends AppCompatActivity {
 
   }
 
+
   @Override
   protected void onPause() {
     super.onPause();
